@@ -9,9 +9,8 @@ Players.prototype.addPlayer = function (player) {
 
 // Players Business Logic --------
 
-function Player(totalScore, turnScore, active) {
+function Player(totalScore, active) {
   this.totalScore = totalScore;
-  this.turnScore = turnScore;
   this.active = active;
 }
 
@@ -23,19 +22,36 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[0].active = false;
     this.players[1].active = true;
     this.players[0].totalScore += finalTurnScore;
-    $(".activePlayer2").addClass("activePlayer");
-    $(".activePlayer1").removeClass("activePlayer");
+    if (this.players[0].totalScore >= 15) {
+      winner("Player 1");
+      // location.reload();
+    }
+    $("#activePlayer2").addClass("activePlayer");
+    $("#activePlayer1").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
   } else {
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += finalTurnScore;
-    $(".activePlayer1").addClass("activePlayer");
-    $(".activePlayer2").removeClass("activePlayer");
+    if (this.players[1].totalScore >= 15) {
+      winner("Player 2");
+      // location.reload();
+    }
+    $("#activePlayer1").addClass("activePlayer");
+    $("#activePlayer2").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
   }
+}
+
+function winner (winner) {
+  $(".endgame").empty();
+  $(".congrats").text(winner + " wins!");
+  $(".show").show(400);
+  $("#reset").click(function () {
+    location.reload();
+  });
 }
 
 // Score Logic ---------
@@ -61,13 +77,14 @@ let dice = {
   }
 }
 
+
 // User Interface Logic ---------
 
 $(document).ready(function () {
-  $(".activePlayer1").addClass("activePlayer");
+  $("#activePlayer1").addClass("activePlayer");
   let players = new Players();
-  let player1 = new Player(0, 0, true);
-  let player2 = new Player(0, 0, false);
+  let player1 = new Player(0, true);
+  let player2 = new Player(0, false);
   players.addPlayer(player1);
   players.addPlayer(player2);
   let finalTurnScore;
@@ -89,8 +106,8 @@ $(document).ready(function () {
     players.playerSwitch(finalTurnScore);
     turnTotal = 0;
     finalTurnScore = 0;
-    $("#dice-roll").text(turnTotal);
-    $("#turn-total").text(finalTurnScore);
+    $("#dice-roll").text("0");
+    $("#turn-total").text("0");
     }
   });
 });
