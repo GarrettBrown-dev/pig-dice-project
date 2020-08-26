@@ -23,11 +23,18 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[0].active = false;
     this.players[1].active = true;
     this.players[0].totalScore += finalTurnScore;
+    $(".activePlayer2").addClass("activePlayer");
+    $(".activePlayer1").removeClass("activePlayer");
+    $("#player1-output").text(this.players[0].totalScore);
+    $("#player2-output").text(this.players[1].totalScore);
   } else {
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += finalTurnScore;
-    alert(this.pl)
+    $(".activePlayer1").addClass("activePlayer");
+    $(".activePlayer2").removeClass("activePlayer");
+    $("#player1-output").text(this.players[0].totalScore);
+    $("#player2-output").text(this.players[1].totalScore);
   }
 }
 
@@ -57,26 +64,33 @@ let dice = {
 // User Interface Logic ---------
 
 $(document).ready(function () {
+  $(".activePlayer1").addClass("activePlayer");
   let players = new Players();
   let player1 = new Player(0, 0, true);
   let player2 = new Player(0, 0, false);
   players.addPlayer(player1);
   players.addPlayer(player2);
-  console.log(players);
   let finalTurnScore;
   $("button#roll-btn").click(function () {
     let diceRoll = dice.roll();
-    console.log("rolled: " + diceRoll);
     finalTurnScore = turnScore(diceRoll);
-    console.log("Turn Score: " + finalTurnScore);
     if (diceRoll === 1) {
       players.playerSwitch(finalTurnScore);
     }
-    console.log(players);
+    $("#dice-roll").text(diceRoll);
+    $("#turn-total").text(finalTurnScore);
   });
   $("button#hold-btn").click(function () {
+    if (isNaN(finalTurnScore)) {
+      turnTotal = 0;
+      finalTurnScore = 0;
+      players.playerSwitch(finalTurnScore);
+    } else {
     players.playerSwitch(finalTurnScore);
     turnTotal = 0;
     finalTurnScore = 0;
+    $("#dice-roll").text(turnTotal);
+    $("#turn-total").text(finalTurnScore);
+    }
   });
 });

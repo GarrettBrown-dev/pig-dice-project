@@ -1,3 +1,42 @@
-#roll-btn {
+h1 {
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Monoton', cursive;
+  font-size: 80px;
+}
+body {
+  background-color: rgb(208, 242, 252);
   
+}
+
+.container {
+  background-color: white;
+  padding: 60px;
+  padding-bottom: 200px;
+  margin-top: 60px;
+  border: outset rgb(231, 231, 231);
+  border-width: 9px;
+}
+.activePlayer {
+  background-color: rgb(195, 236, 255);
+  padding: 10px;
+}
+
+#roll-btn {
+  background-color: rgb(73, 72, 72);
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#hold-btn {
+  background-color: rgb(30, 133, 177);
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.rollStats {
+  text-align: center;
+  padding: 50px;
 }
