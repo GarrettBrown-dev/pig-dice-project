@@ -23,7 +23,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[0].active = false;
     this.players[1].active = true;
     this.players[0].totalScore += finalTurnScore;
-    if (this.players[0].totalScore >= 100) {
+    if (this.players[0].totalScore >= 50) {
       winner("Player 1");
     }
     
@@ -37,7 +37,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += finalTurnScore;
-    if (this.players[1].totalScore >= 100) {
+    if (this.players[1].totalScore >= 50) {
       winner("Player 2");
     }
     $("#activePlayer1").addClass("activePlayer");
@@ -53,7 +53,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += computerFinalTurnScore;
-    if (this.players[1].totalScore >= 100) {
+    if (this.players[1].totalScore >= 50) {
       winner("Player 2(Computer Wins)");
     }
     players.playerSwitch(finalTurnScore);
@@ -68,11 +68,12 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
 
 function computerScoreCalc() {
   turnTotal = 0;
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     let compDiceRoll = dice.roll();
     console.log("Computer rolled a: " + compDiceRoll);
     if (compDiceRoll === 1) {
-      compDiceRoll = 0;
+      turnTotal = 0;
+      return turnTotal;
     }
     turnTotal += compDiceRoll;
   }
@@ -159,6 +160,6 @@ $(document).ready(function () {
     // $(".show-computer").show();
     players.players[1].computer = true;
     players.players[0].active = false;
-    console.log("Computer has been set to " + players.players[1].computer)
+    console.log("Computer has been set to " + players.players[1].computer);
   })
 });

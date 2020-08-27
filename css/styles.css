@@ -30,7 +30,7 @@ body {
 }
 
 #hold-btn {
-  background-color: rgb(30, 133, 177);
+  background-color: rgb(7, 86, 189);
   color: white;
   font-size: 20px;
   margin-top: 10px;
@@ -49,5 +49,17 @@ body {
 
 .show {
   display: none;
+}
+
+#computer-btn {
+  background-color: rgb(230, 58, 5);
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  left: 35%;
 }
 
