@@ -51,6 +51,10 @@ body {
   display: none;
 }
 
+#computer-btn {
+  border-radius: 50%;
+}
+
 /* #computer-btn {
   background-color: rgb(4, 63, 117);
   color: white;
@@ -62,4 +66,3 @@ body {
   position: relative;
   left: 35%;
 } */
-

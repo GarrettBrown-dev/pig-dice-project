@@ -118,10 +118,6 @@ let dice = {
   }
 }
 
-function diceImage(diceRoll) {
-  let img = document.createElement("img/dice" + diceRoll);
-}
-
 // User Interface Logic ---------
 
 let players = new Players();
