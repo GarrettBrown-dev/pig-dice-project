@@ -5,7 +5,7 @@ h1 {
   font-size: 80px;
 }
 body {
-  background-color: rgb(208, 242, 252);
+  background-color: rgb(211, 245, 255);
   
 }
 
@@ -51,8 +51,8 @@ body {
   display: none;
 }
 
-#computer-btn {
-  background-color: rgb(230, 58, 5);
+/* #computer-btn {
+  background-color: rgb(4, 63, 117);
   color: white;
   font-size: 20px;
   margin-top: 20px;
@@ -61,5 +61,5 @@ body {
   padding: 5px;
   position: relative;
   left: 35%;
-}
+} */
 

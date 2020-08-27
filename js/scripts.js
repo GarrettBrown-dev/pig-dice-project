@@ -26,13 +26,13 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     if (this.players[0].totalScore >= 50) {
       winner("Player 1");
     }
-    
+
     $("#activePlayer2").addClass("activePlayer");
     $("#activePlayer1").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
-    
-    
+
+
   } else if (this.players[1].active === true && this.players[1].computer === false) {
     console.log("PLAYER 2 IS ACTIVATED");
     this.players[1].active = false;
@@ -62,7 +62,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     $("#activePlayer2").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
-    
+
   }
 }
 
@@ -84,7 +84,7 @@ function computerScoreCalc() {
 
 // Winner Logic ---------
 
-function winner (winner) {
+function winner(winner) {
   $(".endgame").empty();
   $(".congrats").text(winner + " wins!");
   $(".show").show(400);
@@ -118,6 +118,10 @@ let dice = {
   }
 }
 
+function diceImage(diceRoll) {
+  let img = document.createElement("img/dice" + diceRoll);
+}
+
 // User Interface Logic ---------
 
 let players = new Players();
@@ -130,10 +134,11 @@ $(document).ready(function () {
   players.addPlayer(player2);
   let finalTurnScore;
 
-    // Roll Button Logic ----------
+  // Roll Button Logic ----------
 
   $("button#roll-btn").click(function () {
     let diceRoll = dice.roll();
+    $(".diceimg").html("<img src='img/dice" + diceRoll + ".png' width='50px'>");
     finalTurnScore = turnScore(diceRoll);
     $("#computerRoll").html("The computer rolled: ");
     if (diceRoll === 1) {
@@ -143,7 +148,7 @@ $(document).ready(function () {
     $("#turn-total").text(finalTurnScore);
   });
 
-    //  Hold Button Logic ----------
+  //  Hold Button Logic ----------
 
   $("button#hold-btn").click(function () {
     if (isNaN(finalTurnScore)) {
@@ -151,11 +156,11 @@ $(document).ready(function () {
       finalTurnScore = 0;
       players.playerSwitch(finalTurnScore);
     } else {
-    players.playerSwitch(finalTurnScore);
-    turnTotal = 0;
-    finalTurnScore = 0;
-    $("#dice-roll").text("0");
-    $("#turn-total").text("0");
+      players.playerSwitch(finalTurnScore);
+      turnTotal = 0;
+      finalTurnScore = 0;
+      $("#dice-roll").text("0");
+      $("#turn-total").text("0");
     }
   });
 
@@ -166,3 +171,11 @@ $(document).ready(function () {
     console.log("Computer has been set to " + players.players[1].computer);
   })
 });
+
+
+
+// '$("#dice' + diceRoll + ').show();'
+
+
+//$("#dice" + diceRoll + """).hide();
+

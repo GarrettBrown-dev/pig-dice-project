@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
@@ -8,19 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
   <title>PIG DICE</title>
 </head>
+
 <body>
   <div class="container">
     <h1>Pig Dice</h1>
-    <button id="computer-btn" type="submit">Option: Play Against the Computer!</button>
+    <button id="computer-btn" class="btn btn-secondary btn-block" type="submit">Play Against the Computer?</button>
     <!-- <button id="start" type="submit">START</button> -->
-      <br>
+    <br>
     <div class="endgame">
       <div class="row">
         <div class="col-sm-6">
           <div id="activePlayer1" class="card">
             <div class="card-body">
               <div class="activePlayer1">
-                <h2>PLAYER 1 SCORE</h2> 
+                <h2>PLAYER 1 SCORE</h2>
                 <h3 id="player1-output" style="text-align: center;"></h3>
               </div>
             </div>
@@ -39,18 +41,22 @@
       </div>
       <!-- Adds a line -->
       <hr>
-    <div class="rollStats">
-      <h2>You rolled: <span id="dice-roll"></span></h2>
-      <h3>Total Score this turn: <span id="turn-total"></span></h3>
-      <button id="roll-btn" type="submit">Roll Dice</button>
-      <button id="hold-btn" type="submit">Hold</button>
+      <div class="rollStats">
+        <div class="diceimg"></div>
+        <br>
+        <h2>You rolled: <span id="dice-roll"></span></h2>
+        <h4>Total Score this turn: <span id="turn-total"></span></h4>
+
+        <button id="roll-btn" type="submit">Roll Dice</button>
+        <button id="hold-btn" type="submit">Hold</button>
+      </div>
+      <h2 id="computerRoll">The computer rolled: </h2>
     </div>
-    <p id="computerRoll">The computer rolled: </p>
+    <h4 class="congrats"></h4>
+    <hr>
+    <button id="reset" type="submit" class="show btn btn-secondary btn-lg btn-block">Play again?</button>
   </div>
-<h4 class="congrats"></h4>
-<hr>
-<button id="reset" type="submit" class="show btn btn-secondary btn-lg btn-block">Play again?</button>
-</div>
 
 </body>
+
 </html>
