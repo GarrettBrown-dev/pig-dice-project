@@ -9,15 +9,16 @@ Players.prototype.addPlayer = function (player) {
 
 // Players Business Logic --------
 
-function Player(totalScore, active) {
+function Player(totalScore, active, computer) {
   this.totalScore = totalScore;
   this.active = active;
+  this.computer = computer;
 }
 
 // Player Select Logic --------
 
 Players.prototype.playerSwitch = function (finalTurnScore) {
-  console.log("This is the play function: " + finalTurnScore);
+
   if (this.players[0].active === true) {
     this.players[0].active = false;
     this.players[1].active = true;
@@ -25,11 +26,14 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     if (this.players[0].totalScore >= 100) {
       winner("Player 1");
     }
+    
     $("#activePlayer2").addClass("activePlayer");
     $("#activePlayer1").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
-  } else {
+    
+  } else if (this.players[1].active === true && this.players[1].computer === false) {
+    console.log("PLAYER 2 IS ACTIVATED");
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += finalTurnScore;
@@ -40,12 +44,40 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     $("#activePlayer2").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
+
+    // Computer logic 
+
+  } else {
+    console.log("Has reached computer else statement");
+    let computerFinalTurnScore = computerScoreCalc();
+    this.players[1].active = false;
+    this.players[0].active = true;
+    this.players[1].totalScore += computerFinalTurnScore;
+    if (this.players[1].totalScore >= 100) {
+      winner("Player 2(Computer Wins)");
+    }
+    players.playerSwitch(finalTurnScore);
+    $("#activePlayer1").addClass("activePlayer");
+    $("#activePlayer2").removeClass("activePlayer");
+    $("#player1-output").text(this.players[0].totalScore);
+    $("#player2-output").text(this.players[1].totalScore);
   }
 }
 
-// Computer Player Logic ------
+// Computer Player Logic --------
 
-
+function computerScoreCalc() {
+  turnTotal = 0;
+  for (let i = 0; i < 2; i++) {
+    let compDiceRoll = dice.roll();
+    console.log("Computer rolled a: " + compDiceRoll);
+    if (compDiceRoll === 1) {
+      compDiceRoll = 0;
+    }
+    turnTotal += compDiceRoll;
+  }
+  return turnTotal;
+}
 
 // Winner Logic ---------
 
@@ -85,11 +117,12 @@ let dice = {
 
 // User Interface Logic ---------
 
+let players = new Players();
+
 $(document).ready(function () {
   $("#activePlayer1").addClass("activePlayer");
-  let players = new Players();
-  let player1 = new Player(0, true);
-  let player2 = new Player(0, false);
+  let player1 = new Player(0, true, false);
+  let player2 = new Player(0, false, false);
   players.addPlayer(player1);
   players.addPlayer(player2);
   let finalTurnScore;
@@ -123,6 +156,9 @@ $(document).ready(function () {
   });
 
   $("button#computer-btn").click(function () {
-    $(".show-computer").show();
-  }
+    // $(".show-computer").show();
+    players.players[1].computer = true;
+    players.players[0].active = false;
+    console.log("Computer has been set to " + players.players[1].computer)
+  })
 });
