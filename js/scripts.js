@@ -22,9 +22,8 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[0].active = false;
     this.players[1].active = true;
     this.players[0].totalScore += finalTurnScore;
-    if (this.players[0].totalScore >= 15) {
+    if (this.players[0].totalScore >= 100) {
       winner("Player 1");
-      // location.reload();
     }
     $("#activePlayer2").addClass("activePlayer");
     $("#activePlayer1").removeClass("activePlayer");
@@ -34,9 +33,8 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     this.players[1].active = false;
     this.players[0].active = true;
     this.players[1].totalScore += finalTurnScore;
-    if (this.players[1].totalScore >= 15) {
+    if (this.players[1].totalScore >= 100) {
       winner("Player 2");
-      // location.reload();
     }
     $("#activePlayer1").addClass("activePlayer");
     $("#activePlayer2").removeClass("activePlayer");
@@ -44,6 +42,12 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     $("#player2-output").text(this.players[1].totalScore);
   }
 }
+
+// Computer Player Logic ------
+
+
+
+// Winner Logic ---------
 
 function winner (winner) {
   $(".endgame").empty();
@@ -53,6 +57,7 @@ function winner (winner) {
     location.reload();
   });
 }
+
 
 // Score Logic ---------
 
@@ -69,6 +74,7 @@ function turnScore(diceRoll) {
 
 
 // Dice Roll Logic ---------
+
 let dice = {
   sides: 6,
   roll: function () {
@@ -76,7 +82,6 @@ let dice = {
     return randomNumber;
   }
 }
-
 
 // User Interface Logic ---------
 
@@ -88,6 +93,9 @@ $(document).ready(function () {
   players.addPlayer(player1);
   players.addPlayer(player2);
   let finalTurnScore;
+
+    // Roll Button Logic ----------
+
   $("button#roll-btn").click(function () {
     let diceRoll = dice.roll();
     finalTurnScore = turnScore(diceRoll);
@@ -97,6 +105,9 @@ $(document).ready(function () {
     $("#dice-roll").text(diceRoll);
     $("#turn-total").text(finalTurnScore);
   });
+
+    //  Hold Button Logic ----------
+
   $("button#hold-btn").click(function () {
     if (isNaN(finalTurnScore)) {
       turnTotal = 0;
@@ -110,4 +121,8 @@ $(document).ready(function () {
     $("#turn-total").text("0");
     }
   });
+
+  $("button#computer-btn").click(function () {
+    $(".show-computer").show();
+  }
 });
