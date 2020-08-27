@@ -14,7 +14,7 @@
     <button id="computer-btn" type="submit">Option: Play Against the Computer!</button>
     <!-- <button id="start" type="submit">START</button> -->
       <br>
-      <div class="endgame">
+    <div class="endgame">
       <div class="row">
         <div class="col-sm-6">
           <div id="activePlayer1" class="card">
@@ -30,7 +30,7 @@
           <div id="activePlayer2" class="card">
             <div class="card-body">
               <div class="activePlayer2">
-                <h2>PLAYER 2 SCORE</h2>
+                <h2 id="computerName">PLAYER 2 SCORE</h2>
                 <h3 id="player2-output" style="text-align: center;"></h3>
               </div>
             </div>
@@ -39,15 +39,14 @@
       </div>
       <!-- Adds a line -->
       <hr>
-  <div class="rollStats">
-    <h2>You rolled: <span id="dice-roll"></span></h2>
-    <h3>Total Score this turn: <span id="turn-total"></span></h3>
-    <button id="roll-btn" type="submit">Roll Dice</button>
-    <button id="hold-btn" type="submit">Hold</button>
-    
-    
-</div>
-</div>
+    <div class="rollStats">
+      <h2>You rolled: <span id="dice-roll"></span></h2>
+      <h3>Total Score this turn: <span id="turn-total"></span></h3>
+      <button id="roll-btn" type="submit">Roll Dice</button>
+      <button id="hold-btn" type="submit">Hold</button>
+    </div>
+    <p id="computerRoll">The computer rolled: </p>
+  </div>
 <h4 class="congrats"></h4>
 <hr>
 <button id="reset" type="submit" class="show btn btn-secondary btn-lg btn-block">Play again?</button>

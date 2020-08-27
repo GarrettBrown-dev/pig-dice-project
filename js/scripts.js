@@ -32,6 +32,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
     
+    
   } else if (this.players[1].active === true && this.players[1].computer === false) {
     console.log("PLAYER 2 IS ACTIVATED");
     this.players[1].active = false;
@@ -61,6 +62,7 @@ Players.prototype.playerSwitch = function (finalTurnScore) {
     $("#activePlayer2").removeClass("activePlayer");
     $("#player1-output").text(this.players[0].totalScore);
     $("#player2-output").text(this.players[1].totalScore);
+    
   }
 }
 
@@ -70,7 +72,7 @@ function computerScoreCalc() {
   turnTotal = 0;
   for (let i = 0; i < 5; i++) {
     let compDiceRoll = dice.roll();
-    console.log("Computer rolled a: " + compDiceRoll);
+    $("#computerRoll").append(compDiceRoll + " ");
     if (compDiceRoll === 1) {
       turnTotal = 0;
       return turnTotal;
@@ -133,6 +135,7 @@ $(document).ready(function () {
   $("button#roll-btn").click(function () {
     let diceRoll = dice.roll();
     finalTurnScore = turnScore(diceRoll);
+    $("#computerRoll").html("The computer rolled: ");
     if (diceRoll === 1) {
       players.playerSwitch(finalTurnScore);
     }
@@ -157,7 +160,7 @@ $(document).ready(function () {
   });
 
   $("button#computer-btn").click(function () {
-    // $(".show-computer").show();
+    $("#computerName").text("COMPUTER SCORE");
     players.players[1].computer = true;
     players.players[0].active = false;
     console.log("Computer has been set to " + players.players[1].computer);
